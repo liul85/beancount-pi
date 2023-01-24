@@ -1,0 +1,6 @@
+---
+- hosts: raspberry-pies
+  #become: yes
+  #become_user: pi
+  roles:
+    - nginx
