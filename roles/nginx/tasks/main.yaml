@@ -3,3 +3,19 @@
   ansible.builtin.apt:
     name: nginx
     state:  present
+
+- name: copy nginx config file
+  become: true
+  copy: src=files/nginx.conf dest=/etc/nginx/sites-available/default
+
+- name: enable config
+  become: true
+  file: src=/etc/nginx/sites-available/default dest=/etc/nginx/sites-enabled/default  state=link
+
+- name: copy index.html
+  become: true
+  template: src=templates/index.html.j2 dest=/var/www/html/index.html mode=0644
+
+- name: restart nginx
+  become: true
+  service: name=nginx state=restarted

@@ -1,0 +1,4 @@
+- name: Install fava
+  ansible.builtin.pip:
+    name: fava
+    executable: pip3

@@ -1,0 +1,5 @@
+- name: Clone personal beancount repo
+  ansible.builtin.git:
+    repo: "https://{{github_user}}:{{github_token}}@github.com/liul85/beancount.git"
+    dest: /home/pi/github/beancount
+

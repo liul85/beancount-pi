@@ -1,6 +1,6 @@
 ---
-- hosts: raspberry-pies
-  #become: yes
-  #become_user: pi
+- hosts: raspberrypies
   roles:
+    - beancount
+    - fava
     - nginx
