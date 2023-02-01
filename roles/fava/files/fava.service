@@ -1,0 +1,11 @@
+[Unit]
+Description=a web interface for the double-entry bookkeeping software Beancount with a focus on features and usability.
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/github/beancount
+ExecStart=/home/pi/.local/bin/fava main.bean
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
