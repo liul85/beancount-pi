@@ -1,3 +1,6 @@
 [raspberrypies]
 raspberrypi.local
 
+[raspberrypies:vars]
+beancount_repo=github.com/liul85/beancount.git
+beancount_folder=/home/pi/github/beancount

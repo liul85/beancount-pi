@@ -4,18 +4,21 @@
     name: nginx
     state:  present
 
-- name: copy nginx config file
+- name: Copy Nginx config file
   become: true
   copy: src=files/nginx.conf dest=/etc/nginx/sites-available/default
+  notify:
+    - Restart Nginx
 
-- name: enable config
+- name: Enable Nginx config
   become: true
   file: src=/etc/nginx/sites-available/default dest=/etc/nginx/sites-enabled/default  state=link
+  notify:
+    - Restart Nginx
 
-- name: copy index.html
+- name: Copy index.html
   become: true
   template: src=templates/index.html.j2 dest=/var/www/html/index.html mode=0644
+  notify:
+    - Restart Nginx
 
-- name: restart nginx
-  become: true
-  service: name=nginx state=restarted

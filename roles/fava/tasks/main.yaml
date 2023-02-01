@@ -3,10 +3,19 @@
     name: fava
     executable: pip3
 
+- name: Get fava bin path
+  ansible.builtin.shell: source ~/.profile && which fava
+  args:
+    executable: /bin/bash
+  register: fava_path_out
+
+- set_fact:
+    fava_path={{ fava_path_out.stdout }}
+
 - name: Create fava service
   become: true
-  copy: src=files/fava.service dest=/lib/systemd/system/fava.service
+  template: src=templates/fava.service.j2 dest=/lib/systemd/system/fava.service mode=0644
+  notify:
+    - Reload daemon
+    - Restart fava service
 
-- name: Start fava service
-  become: true
-  service: name=fava state=started

@@ -1,0 +1,7 @@
+- name: Reload daemon
+  become: true
+  command: systemctl daemon-reload
+
+- name: Restart fava service
+  become: true
+  service: name=fava state=restarted

@@ -1,0 +1,11 @@
+[Unit]
+Description=A web interface for Beancount with a focus on features and usability.
+
+[Service]
+User=pi
+WorkingDirectory={{ beancount_folder }}
+ExecStart={{ fava_path }} main.bean
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
